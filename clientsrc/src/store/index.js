@@ -17,12 +17,16 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   state: {
-    profile: {}
+    profile: {},
+    bugs:[]
   },
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
-    }
+    },
+    setBugs(state, bugs) {
+      state.bugs = bugs
+    },
   },
   actions: {
     setBearer({}, bearer) {
@@ -38,6 +42,18 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error);
       }
-    }
+    },
+    getBugs({ commit, dispatch }) {
+      api.get('bugs')
+        .then(res => {
+          commit('setBugs', res.data)
+        })
+    },
+    addBug({ commit, dispatch }, bugData) {
+      api.post('bugs', bugData)
+        .then(serverBoard => {
+          dispatch('getBugs')
+        })
+    },
   }
 });
