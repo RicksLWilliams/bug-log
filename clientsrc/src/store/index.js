@@ -18,7 +18,8 @@ let api = Axios.create({
 export default new Vuex.Store({
   state: {
     profile: {},
-    bugs:[]
+    bugs:[],
+    activeBug:{}
   },
   mutations: {
     setProfile(state, profile) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     setBugs(state, bugs) {
       state.bugs = bugs
     },
+    setActiveBug(state, bug){
+      state.activeBug = bug
+    }
   },
   actions: {
     setBearer({}, bearer) {
@@ -49,11 +53,30 @@ export default new Vuex.Store({
           commit('setBugs', res.data)
         })
     },
-    addBug({ commit, dispatch }, bugData) {
-      api.post('bugs', bugData)
-        .then(serverBoard => {
-          dispatch('getBugs')
-        })
+    async getBug({ commit }, bugId) {
+      try {
+        let res = await api.get(`bugs/${bugId}`);
+        //console.log("getBlog",res.data);
+        commit("setActiveBug", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async addBug({ commit, dispatch }, bugData) {
+      try {
+        let res = await api.post("bugs/",bugData );
+        this.dispatch("getBugs" )
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async addNote({ commit, dispatch }, noteData) {
+      try {
+        let res = await api.post("notes/",noteData );
+        this.dispatch("getNotes")
+      } catch (error) {
+        console.error(error);
+      }
     },
   }
 });

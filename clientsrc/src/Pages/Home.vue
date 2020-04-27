@@ -28,7 +28,6 @@ import Bug from "../components/Bug.vue";
 import AddBug from "../components/AddBug.vue";
 export default {
   name: "home",
-  //  name: "List",
   //props: ["listData"],
   data() {
     return {};
@@ -43,9 +42,9 @@ export default {
       this.$store.dispatch("deleteBug", this.bugData);
     }
   },
-  // mounted() {
-  //   this.$store.dispatch("getBugs", this.bugData.id);
-  // },
+   mounted() {
+     this.$store.dispatch("getBugs", {});
+   },
   components: { Bug
    , AddBug 
   }

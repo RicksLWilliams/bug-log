@@ -2,8 +2,8 @@
 <template>
   <div class="col-12 border mt-3 task">
     <!-- <h1 class="text-primary">I am a list</h1> -->
-    <div class="row">
-      <h1>I am a bug</h1>
+    <div class="row" @click="selectBug()">
+      <!-- <h1>I am a bug</h1> -->
       <h3 class="text-primary text-left tskTitle col-10">• {{bugData.closed}}</h3>
       <h3 class="text-primary text-left tskTitle col-10">• {{bugData.description}}</h3>
       <h3 class="text-primary text-left tskTitle col-10">• {{bugData.title}}</h3>
@@ -63,6 +63,14 @@ export default {
   //   this.$store.dispatch("getComments", this.taskData.id);
   // },
   methods: {
+    selectBug() {
+      this.$store.commit("setActiveBug", {});
+      console.log(this.bugData.id)
+      this.$router.push({
+        name: "BugDetails",
+        params: { bugId: this.bugData.id }
+      });
+    },
     deleteBug() {
       //let listId = this.$route.params.boardId
       //this.$store.dispatch("deleteTask", taskId);
