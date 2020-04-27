@@ -7,8 +7,8 @@
       <span >&times;</span>
     </button>
     <h1>here is a note</h1>
-    <!-- <p>Body: {{noteData.content}}</p>
-    <p>Email: {{noteData.creatorEmail}}</p> -->
+    <p>Body: {{noteData.content}}</p>
+    <p>Email: {{noteData.creatorEmail}}</p>
 
         <!-- <form @submit.prevent="changeNote()">
           <div class="form-group">

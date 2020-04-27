@@ -25,7 +25,9 @@
           </div>
         </div>-->
 
-        <div v-if="this.$auth.userInfo.email == this.bugDetails.creatorEmail && !this.bugDetails.closed">
+        <div
+          v-if="this.$auth.userInfo.email == this.bugDetails.creatorEmail && !this.bugDetails.closed"
+        >
           <form @submit.prevent="changeBug()">
             <div class="form-group">
               <label for="title">Title</label>
@@ -70,7 +72,17 @@
       </div>
     </div>-->
     <addNote v-if="$auth.isAuthenticated"></addNote>
-    <note v-if="$auth.isAuthenticated"></note>
+    <!-- <note v-if="$auth.isAuthenticated"></note> -->
+    <div class="row">
+      <div class="col-11">
+        <note
+          class="note"
+          v-for="noteData in bugNotes"
+          :noteData="noteData"
+          :key="noteData.id"
+        ></note>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -90,7 +102,11 @@ export default {
   computed: {
     bugDetails() {
       return this.$store.state.activeBug;
-    }
+    },
+    bugNotes() {
+       return this.$store.state.notes;
+     },
+
     // blogComents() {
     //   return this.$store.state.activeBlog.comments;
     // },
