@@ -100,6 +100,15 @@ export default new Vuex.Store({
           commit('setNotes', res.data)
         })
     },
+    //deleteNote
+    deleteNote({ commit, dispatch }, noteData) {
+      //console.log("deleteNote", noteData)
+      api.delete('notes/'+ noteData.id)
+        .then(res => {
+          this.dispatch("getNotes", noteData.bug)
+          //commit('setNotes', res.data)
+        })
+    },
 
   }
 });

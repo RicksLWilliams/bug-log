@@ -6,7 +6,6 @@
     <button type="button" class="close text-danger" @click="deleteNote()">
       <span >&times;</span>
     </button>
-    <h1>here is a note</h1>
     <p>Body: {{noteData.content}}</p>
     <p>Email: {{noteData.creatorEmail}}</p>
 
