@@ -1,18 +1,18 @@
   
 <template>
-  <div class="col-12 border mt-3 task">
+  <div class="col-12 border m-1">
     <!-- <h1 class="text-primary">I am a list</h1> -->
     <div class="row" @click="selectBug()">
       <!-- <h1>I am a bug</h1> -->
-      <h3 class="text-primary text-left tskTitle col-10">• {{bugData.closed}}</h3>
-      <h3 class="text-primary text-left tskTitle col-10">• {{bugData.description}}</h3>
-      <h3 class="text-primary text-left tskTitle col-10">• {{bugData.title}}</h3>
-      <h3 class="text-primary text-left tskTitle col-10">• {{bugData.closedDate}}</h3>
-      <h3 class="text-primary text-left tskTitle col-10">• {{bugData.creatorEmail}}</h3>
+      <h3 class="text-primary text-left tskTitle col-10">{{bugData.title}}</h3>
+      <h3 class="text-primary text-left tskTitle col-10">{{bugData.creatorEmail}}</h3>
+      <h3 class="text-primary text-left tskTitle col-10">{{bugData.closed}}</h3>
+      <!-- <h3 class="text-primary text-left tskTitle col-10">{{bugData.description}}</h3> -->
+      <h3 class="text-primary text-left tskTitle col-10">{{bugData.updatedAt}}</h3>
       <div class="col-2">
-        <button class="btn btn-process" @click="deleteBug()">
+        <!-- <button class="btn btn-process" @click="deleteBug()">
           <h5 class="text-danger">X</h5>
-        </button>
+        </button> -->
       </div>
     </div>
     <div class="row pl-1">

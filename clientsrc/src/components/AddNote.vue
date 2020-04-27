@@ -3,7 +3,7 @@
   <div class="border col-12">
     <form @submit.prevent="addNote()">
       <div class="form-group">
-        <label for="note">Comment</label>
+        <label for="note">Note</label>
         <input type="text" name="note" id="" class="form-control" placeholder="enter note..." aria-describedby="helpId"
           v-model="newNote.content" required>
       </div>
@@ -22,9 +22,7 @@
     },
     methods: {
       addNote() {
-        //set it in the store
         this.newNote.bugId = this.$route.params.bugId
-        //this.newComment.creatorEmail = creatorEmail
         this.$store.dispatch('addNote', this.newNote)
         this.newNote = {}
       }
