@@ -9,9 +9,9 @@
           <h3 class="text-primary text-left tskTitle col-10">{{bugDetails.updatedAt}}</h3>
           <h3 class="text-primary text-left tskTitle col-10">{{bugDetails.creatorEmail}}</h3>
           <div class="col-2">
-            <button class="btn btn-process" @click="closeBug()">
+            <!-- <button class="btn btn-process" @click="closeBug()">
               <h5 class="text-danger">Close</h5>
-            </button>
+            </button> -->
           </div>
         </div>
         <!-- <div class="row">
@@ -57,6 +57,9 @@
             </div>
             <button type="submit" class="btn btn-success">Save</button>
           </form>
+          <button class="btn btn-process" @click="closeBug()">
+            <h5 class="text-danger">Close</h5>
+          </button>
         </div>
       </div>
     </div>
@@ -75,12 +78,7 @@
     <!-- <note v-if="$auth.isAuthenticated"></note> -->
     <div class="row">
       <div class="col-11">
-        <note
-          class="note"
-          v-for="noteData in bugNotes"
-          :noteData="noteData"
-          :key="noteData.id"
-        ></note>
+        <note class="note" v-for="noteData in bugNotes" :noteData="noteData" :key="noteData.id"></note>
       </div>
     </div>
   </div>
@@ -105,15 +103,15 @@ export default {
       return this.$store.state.activeBug;
     },
     bugNotes() {
-       return this.$store.state.notes;
-     },
+      return this.$store.state.notes;
+    }
   },
   methods: {
     closeBug() {
       console.log("closeBug", this.$auth.userInfo.email);
       console.log(this.bugDetails);
       this.bugDetails.closed = true;
-      //this.$store.dispatch("changeBug", this.bugDetails);
+      this.$store.dispatch("changeBug", this.bugDetails);
     },
     changeBug() {
       console.log("closeBug", this.$auth.userInfo.email);
