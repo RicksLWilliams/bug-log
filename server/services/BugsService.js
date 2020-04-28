@@ -16,7 +16,7 @@ class BugsService {
   }
 
    async getBugNotesByBugId(bugId, userEmail) {
-     let data = await dbContext.Notes.find({ bugId: bugId })
+     let data = await dbContext.Notes.find({ bug: bugId })
      if (!data) {
        throw new BadRequest("Invalid ID")
      }

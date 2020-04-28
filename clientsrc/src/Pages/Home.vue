@@ -11,13 +11,23 @@
           <div class="col-6 dltList">
             <!-- <button class="btn pb-0" @click="deleteList(listData.id)">
               <h4 class="text-danger">X</h4>
-            </button> -->
+            </button>-->
           </div>
         </div>
         <!-- <add-task v-bind:listData="listData"></add-task> -->
         <add-bug></add-bug>
+        <!-- <input type="checkbox" v-model="toggle" true-value="yes" false-value="no" /> -->
         <bug v-for="bugInfo in bugItems" :bugData="bugInfo" :key="bugInfo.id"></bug>
-        <!-- <bug></bug> -->
+        <!-- <form @submit.prevent="hideClosed">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input" />
+              </div>
+            </div>
+            <p mb-3>hide closed</p>
+          </div>
+        </form> -->
       </div>
     </div>
   </div>
@@ -34,6 +44,12 @@ export default {
   computed: {
     bugItems() {
       return this.$store.state.bugs;
+    },
+    hideClosed() {
+      console.log("hideClosed");
+    },
+    toggle() {
+      console.log("toggle");
     }
   },
   methods: {
@@ -41,11 +57,9 @@ export default {
       this.$store.dispatch("deleteBug", this.bugData);
     }
   },
-   mounted() {
-     this.$store.dispatch("getBugs");
-   },
-  components: { Bug
-   , AddBug 
-  }
+  mounted() {
+    this.$store.dispatch("getBugs");
+  },
+  components: { Bug, AddBug }
 };
 </script>
