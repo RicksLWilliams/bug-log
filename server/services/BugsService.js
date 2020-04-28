@@ -15,13 +15,13 @@ class BugsService {
     return data
   }
 
-  // async getBoardListsByBoardId(boardId, userEmail) {
-  //   let data = await dbContext.Lists.find({ boardId: boardId, creatorEmail: userEmail })
-  //   if (!data) {
-  //     throw new BadRequest("Invalid ID or you do not own this board")
-  //   }
-  //   return data
-  // }
+   async getBugNotesByBugId(bugId, userEmail) {
+     let data = await dbContext.Notes.find({ bugId: bugId })
+     if (!data) {
+       throw new BadRequest("Invalid ID")
+     }
+     return data
+   }
 
   async create(rawData) {
     let data = await dbContext.Bugs.create(rawData)

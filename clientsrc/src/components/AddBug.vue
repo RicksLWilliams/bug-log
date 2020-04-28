@@ -39,7 +39,7 @@ export default {
       console.log("addBug", this.newBug)
       //this.newTask.listId = this.listData.id;
       this.$store.dispatch("addBug", this.newBug);
-      //this.newBug = {};
+      this.newBug = {};
       // this.$store.commit("setActiveBug", {});
       //this.bugData.id = 
       // this.$router.push({

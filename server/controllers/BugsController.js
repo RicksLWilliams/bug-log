@@ -13,7 +13,7 @@ export class BugsController extends BaseController {
       .use(auth0provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getById)
-      //.get('/:id/lists', this.getBoardListsByBoardId)
+      .get('/:id/notes', this.getBugNotesByBugId)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -36,13 +36,13 @@ export class BugsController extends BaseController {
     } catch (error) { next(error) }
   }
 
-  //getBoardListsByBoardId
-  // async getBoardListsByBoardId(req, res, next) {
-  //   try {
-  //     let data = await bugsService.getBoardListsByBoardId(req.params.id, req.userInfo.email)
-  //     return res.send(data)
-  //   } catch (error) { next(error) }
-  // }
+  //getBugNotesByBugId
+   async getBugNotesByBugId(req, res, next) {
+     try {
+       let data = await bugsService.getBugNotesByBugId(req.params.id, req.userInfo.email)
+       return res.send(data)
+     } catch (error) { next(error) }
+   }
 
 
   async create(req, res, next) {

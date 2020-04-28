@@ -51,11 +51,19 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    getBugs({ commit, dispatch }) {
-      api.get('bugs')
-        .then(res => {
-          commit('setBugs', res.data)
-        })
+    async getBugs({ commit, dispatch }) {
+      try {
+        let res = await api.get('bugs');
+        //commit("setProfile", res.data);
+        commit('setBugs', res.data);
+      } catch (error) {
+        console.error(error);
+      }
+
+      // api.get('bugs')
+      //   .then(res => {
+      //     commit('setBugs', res.data)
+      //   })
     },
     async getBug({ commit }, bugId) {
       try {
@@ -69,7 +77,7 @@ export default new Vuex.Store({
     async addBug({ commit, dispatch }, bugData) {
       try {
         let res = await api.post("bugs/",bugData );
-        this.dispatch("getBugs" )
+        this.dispatch("getBugs")
       } catch (error) {
         console.error(error);
       }
@@ -95,11 +103,18 @@ export default new Vuex.Store({
     },
     //getNotes
     getNotes({ commit, dispatch }, bugId) {
-      api.get('notes')
+      api.get("/notes")
         .then(res => {
           commit('setNotes', res.data)
         })
     },
+    //getNotes
+    getBugNotes({ commit, dispatch }, bugId) {
+          api.get("bugs/" + bugId + "/notes")
+            .then(res => {
+              commit('setNotes', res.data)
+            })
+        },
     //deleteNote
     deleteNote({ commit, dispatch }, noteData) {
       //console.log("deleteNote", noteData)
