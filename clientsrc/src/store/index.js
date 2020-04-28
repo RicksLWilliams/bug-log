@@ -78,6 +78,10 @@ export default new Vuex.Store({
       try {
         let res = await api.post("bugs/",bugData );
         this.dispatch("getBugs")
+        router.push({
+             name: "BugDetails",
+             params: { bugId: res.data.id }
+          });
       } catch (error) {
         console.error(error);
       }

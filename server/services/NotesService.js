@@ -28,6 +28,10 @@ class NotesService {
   async create(rawData) {
     //let data = await dbContext.Lists.create(rawData)
     //return data
+    let bug = dbContext.Bugs.findById( rawData.bug)
+    if (bug.closed) {
+      throw new BadRequest("Bug is closed");
+    }
     return await dbContext.Notes.create(rawData)
   }
 
