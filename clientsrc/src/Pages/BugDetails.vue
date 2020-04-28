@@ -11,7 +11,7 @@
           <div class="col-2">
             <!-- <button class="btn btn-process" @click="closeBug()">
               <h5 class="text-danger">Close</h5>
-            </button> -->
+            </button>-->
           </div>
         </div>
         <!-- <div class="row">
@@ -108,31 +108,15 @@ export default {
   },
   methods: {
     closeBug() {
-      console.log("closeBug", this.$auth.userInfo.email);
-      console.log(this.bugDetails);
-      this.bugDetails.closed = true;
-      this.$store.dispatch("changeBug", this.bugDetails);
+      if (window.confirm("Are you sure?")) {
+        this.bugDetails.closed = true;
+        this.$store.dispatch("changeBug", this.bugDetails);
+      }
     },
     changeBug() {
-      console.log("closeBug", this.$auth.userInfo.email);
-      console.log(this.bugDetails);
       this.$store.dispatch("changeBug", this.bugDetails);
     }
-    // deleteBlog() {
-    //   this.$router.push({ name: "Home" });
-    //   this.$store.dispatch("deleteBlog", this.blogDetails._id);
-    // },
-    // changeBlog() {
-    //   console.log("changeBlog",this.$auth.userInfo.email )
-    //   console.log(this.blogDetails.creator.email)
-    //   this.$store.dispatch("changeBlog", this.blogDetails);
-    // },
-    //deleteComment(commentid) {
-    //this.$router.push({ name: "Blogs" });
-    //console.log(commentid)
-    //console.log("deleteComment", this.$commentid)
-    //this.$store.dispatch("deleteComment", this.comment._id);
-    //}
+
   },
   components: { addNote, Note }
 };
